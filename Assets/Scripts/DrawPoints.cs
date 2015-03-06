@@ -20,7 +20,6 @@ public class DrawPoints : MonoBehaviour {
 		foreach (GameObject obj in GameObject.FindGameObjectsWithTag ("Player")){
 			Players.Add(obj);
 			Texts[i].text = obj.name + ": 0";
-			Debug.Log(obj.name);
 			i++;
 		}
 
@@ -36,7 +35,6 @@ public class DrawPoints : MonoBehaviour {
 			int point = Points.GetPoint(obj);
 			Texts[i].text = obj.name + ": " + point;
 			i++;
-			Debug.Log(obj.name);
 		}
 	}
 }

@@ -3,18 +3,18 @@ using System.Collections;
 
 public class Move : MonoBehaviour {
 
-	private Animator Animator;
-
-	private string InputAxis;
-
 	public int MoveForce;
 	public int MaxSpeed;
+
+	private Animator Animator;
+	private string InputAxis;
+	private Rigidbody2D rbdy2D;
 
 	// Use this for initialization
 	void Start () {
 		Animator = GetComponent<Animator> ();
-		//Read input
 		InputAxis = GetComponent<InputAxes> ().Run;
+		rbdy2D = GetComponent<Rigidbody2D> ();
 	}
 	
 	// Update is called once per frame
@@ -29,8 +29,8 @@ public class Move : MonoBehaviour {
 		if (ChangeDirection (direction))
 			return;
 
-		if (Mathf.Abs (GetComponent<Rigidbody2D>().velocity.x) < MaxSpeed) {
-			GetComponent<Rigidbody2D>().AddForce (Vector2.right * direction * MoveForce);
+		if (Mathf.Abs (rbdy2D.velocity.x) < MaxSpeed) {
+			rbdy2D.AddForce (Vector2.right * direction * MoveForce);
 		}
 	}
 
@@ -39,17 +39,17 @@ public class Move : MonoBehaviour {
 			return false;
 
 		//If direction got another direction than current direction
-		if ((direction > 0 && GetComponent<Rigidbody2D>().velocity.x < 0) ||
-		    (direction < 0 && GetComponent<Rigidbody2D>().velocity.x > 0)) {
-			GetComponent<Rigidbody2D>().velocity = new Vector2(0, GetComponent<Rigidbody2D>().velocity.y);
-			GetComponent<Rigidbody2D>().AddForce (Vector2.right * direction * MoveForce);
+		if ((direction > 0 && rbdy2D.velocity.x < 0) ||
+		    (direction < 0 && rbdy2D.velocity.x > 0)) {
+			rbdy2D.velocity = new Vector2(0, rbdy2D.velocity.y);
+			rbdy2D.AddForce (Vector2.right * direction * MoveForce);
 			return true;
 		}
 		return false;
 	}
 
 	void SetAnimationIsMoving(){
-		if (GetComponent<Rigidbody2D>().velocity.x != 0)
+		if (rbdy2D.velocity.x != 0)
 			Animator.SetBool ("Moving", true);
 		else
 			Animator.SetBool ("Moving", false);

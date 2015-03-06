@@ -17,8 +17,8 @@ public class PointsManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		Debug.Log ("PlayerOne: " + Points["PlayerOne"]);
-		Debug.Log ("PlayerTwo: " + Points["PlayerTwo"]);
+		//Debug.Log ("PlayerOne: " + Points["PlayerOne"]);
+		//Debug.Log ("PlayerTwo: " + Points["PlayerTwo"]);
 	}
 
 	void RespawnObjects(){

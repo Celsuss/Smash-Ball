@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\Charge.cs" />
      <Compile Include="Assets\Scripts\DrawPoints.cs" />
+     <Compile Include="Assets\Scripts\ExitGame.cs" />
      <Compile Include="Assets\Scripts\FollowPlayer.cs" />
      <Compile Include="Assets\Scripts\GetParent.cs" />
      <Compile Include="Assets\Scripts\GrabBall.cs" />
@@ -56,6 +57,8 @@
      <Compile Include="Assets\Scripts\Jump.cs" />
      <Compile Include="Assets\Scripts\KeepBallSize.cs" />
      <Compile Include="Assets\Scripts\Kick.cs" />
+     <Compile Include="Assets\Scripts\Kill.cs" />
+     <Compile Include="Assets\Scripts\LoadScene.cs" />
      <Compile Include="Assets\Scripts\MakeGoal.cs" />
      <Compile Include="Assets\Scripts\Move.cs" />
      <Compile Include="Assets\Scripts\PointsManager.cs" />
