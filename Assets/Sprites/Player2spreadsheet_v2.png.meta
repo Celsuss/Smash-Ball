@@ -1,0 +1,278 @@
+fileFormatVersion: 2
+guid: e0d51af601298f144b64a31c5f4a970f
+TextureImporter:
+  fileIDToRecycleName:
+    21300000: Player2spreadsheet_v2_6
+    21300002: Player2spreadsheet_v2_7
+    21300004: Player2spreadsheet_v2_8
+    21300006: Player2spreadsheet_v2_9
+    21300008: Player2spreadsheet_v2_13
+    21300010: Player2spreadsheet_v2_14
+    21300012: Player2spreadsheet_v2_15
+    21300014: Player2spreadsheet_v2_16
+    21300016: Player2spreadsheet_v2_17
+    21300018: Player2spreadsheet_v2_18
+    21300020: Player2spreadsheet_v2_19
+    21300022: Player2spreadsheet_v2_20
+    21300024: Player2spreadsheet_v2_21
+    21300026: Player2spreadsheet_v2_22
+    21300028: Player2spreadsheet_v2_25
+    21300030: Player2spreadsheet_v2_26
+    21300032: Player2spreadsheet_v2_27
+    21300034: Player2spreadsheet_v2_28
+    21300036: Player2spreadsheet_v2_29
+    21300038: Player2spreadsheet_v2_30
+    21300040: Player2spreadsheet_v2_31
+  serializedVersion: 2
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    linearTexture: 0
+    correctGamma: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: .25
+    normalMapFilter: 0
+  isReadable: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 0
+  seamlessCubemap: 0
+  textureFormat: -3
+  maxTextureSize: 1024
+  textureSettings:
+    filterMode: -1
+    aniso: 16
+    mipBias: -1
+    wrapMode: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: .5, y: .5}
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spritePixelsToUnits: 100
+  alphaIsTransparency: 1
+  textureType: 8
+  buildTargetSettings: []
+  spriteSheet:
+    sprites:
+    - name: Player2spreadsheet_v2_6
+      rect:
+        serializedVersion: 2
+        x: 2
+        y: 490
+        width: 64
+        height: 84
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Player2spreadsheet_v2_7
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 490
+        width: 54
+        height: 83
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Player2spreadsheet_v2_8
+      rect:
+        serializedVersion: 2
+        x: 145
+        y: 491
+        width: 53
+        height: 91
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Player2spreadsheet_v2_9
+      rect:
+        serializedVersion: 2
+        x: 205
+        y: 490
+        width: 63
+        height: 80
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Player2spreadsheet_v2_13
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 394
+        width: 57
+        height: 73
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Player2spreadsheet_v2_14
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 394
+        width: 57
+        height: 69
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Player2spreadsheet_v2_15
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 394
+        width: 57
+        height: 74
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Player2spreadsheet_v2_16
+      rect:
+        serializedVersion: 2
+        x: 210
+        y: 394
+        width: 57
+        height: 67
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Player2spreadsheet_v2_17
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 298
+        width: 57
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Player2spreadsheet_v2_18
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 298
+        width: 57
+        height: 79
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Player2spreadsheet_v2_19
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 197
+        width: 57
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Player2spreadsheet_v2_20
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 195
+        width: 59
+        height: 76
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Player2spreadsheet_v2_21
+      rect:
+        serializedVersion: 2
+        x: 140
+        y: 194
+        width: 57
+        height: 97
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Player2spreadsheet_v2_22
+      rect:
+        serializedVersion: 2
+        x: 221
+        y: 207
+        width: 31
+        height: 67
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Player2spreadsheet_v2_25
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 103
+        width: 57
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Player2spreadsheet_v2_26
+      rect:
+        serializedVersion: 2
+        x: 74
+        y: 103
+        width: 57
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Player2spreadsheet_v2_27
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 103
+        width: 57
+        height: 82
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Player2spreadsheet_v2_28
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 5
+        width: 57
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Player2spreadsheet_v2_29
+      rect:
+        serializedVersion: 2
+        x: 73
+        y: 5
+        width: 57
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Player2spreadsheet_v2_30
+      rect:
+        serializedVersion: 2
+        x: 142
+        y: 5
+        width: 57
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Player2spreadsheet_v2_31
+      rect:
+        serializedVersion: 2
+        x: 209
+        y: 5
+        width: 57
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+  spritePackingTag: 
+  userData: 
