@@ -4,11 +4,14 @@ using System.Collections.Generic;
 
 public class PointsManager : MonoBehaviour {
 
-	Dictionary<string, int> Points;
+	private Dictionary<string, int> Points;
+	private FreezeTime Freezetime;	
 	
 	// Use this for initialization
 	void Start () {
 		Points = new Dictionary<string, int> ();
+		Freezetime = GetComponent<FreezeTime> ();
+
 		GameObject[] objs = GameObject.FindGameObjectsWithTag ("Player");
 
 		for (int i = 0; i < objs.Length; i++) 
@@ -17,6 +20,8 @@ public class PointsManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(Freezetime.GetIsFreeze())
+			RespawnObjects();
 		//Debug.Log ("PlayerOne: " + Points["PlayerOne"]);
 		//Debug.Log ("PlayerTwo: " + Points["PlayerTwo"]);
 	}
@@ -32,6 +37,7 @@ public class PointsManager : MonoBehaviour {
 	public void AddPoint(GameObject obj){
 		Points [obj.name]++;
 		RespawnObjects ();
+		Freezetime.StartCountdown ();
 	}
 
 	public int GetPoint(GameObject obj){

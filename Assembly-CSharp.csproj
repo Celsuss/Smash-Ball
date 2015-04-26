@@ -48,9 +48,11 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\CameraController.cs" />
      <Compile Include="Assets\Scripts\Charge.cs" />
+     <Compile Include="Assets\Scripts\DrawFreezetime.cs" />
      <Compile Include="Assets\Scripts\DrawPoints.cs" />
      <Compile Include="Assets\Scripts\ExitGame.cs" />
      <Compile Include="Assets\Scripts\FollowPlayer.cs" />
+     <Compile Include="Assets\Scripts\FreezeTime.cs" />
      <Compile Include="Assets\Scripts\GetParent.cs" />
      <Compile Include="Assets\Scripts\GrabBall.cs" />
      <Compile Include="Assets\Scripts\InputAxes.cs" />
