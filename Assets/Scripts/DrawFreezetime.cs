@@ -9,22 +9,20 @@ public class DrawFreezetime : MonoBehaviour {
 	public Text FreezeText;
 
 	private FreezeTime Freezetime;
-	//private string EndFreezeStr;
 
 	// Use this for initialization
 	void Start () {
 		Freezetime = FreezeTimeObject.GetComponent<FreezeTime> ();
-		//EndFreezeStr = "Start!";
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		//Get time left on freeze
 		int timeLeft = Freezetime.GetTimeLeft ();
 
-		if (timeLeft > 0) 
+		//Dont write countdown if game is paused
+		if (timeLeft > 0 && Time.timeScale != 0) 
 			FreezeText.text = timeLeft.ToString ();
-		/*else if (timeLeft <= 0 && FreezeText.text != "") 
-			FreezeText.text = EndFreezeStr;*/
 		else
 			FreezeText.text = "";
 	}

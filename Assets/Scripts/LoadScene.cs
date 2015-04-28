@@ -16,4 +16,8 @@ public class LoadScene : MonoBehaviour {
 	public void Load(){
 		Application.LoadLevel ("sceneOne");
 	}
+
+	public void LoadStartMenu(){
+		Application.LoadLevel ("Menu");
+	}
 }
