@@ -3,7 +3,7 @@ using System.Collections;
 
 public class GetParent : MonoBehaviour {
 
-	public Transform PreviousParent { get; set; }
+	public Transform previousParent { get; set; }
 
 	// Use this for initialization
 	void Start () {
@@ -16,7 +16,7 @@ public class GetParent : MonoBehaviour {
 		if (transform.parent == null) return;
 
 		//Update the previous parent
-		if (PreviousParent != transform.parent)
-			PreviousParent = transform.parent;
+		if (previousParent != transform.parent)
+			previousParent = transform.parent;
 	}
 }

@@ -1,18 +1,21 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Enable game object to grab ball, if ball is grabbed then makes it child of game object that grabed it.
+/// </summary>
+
+using UnityEngine;
 using System.Collections;
 
 public class GrabBall : MonoBehaviour {
 
-	private Animator Animator;
+	[SerializeField] float ballOffsetY;	//-0.45
+	[SerializeField] float ballOffsetX;	//0.7
+	Animator animator;
+	AnimatorStateInfo lastAnimationState;
 
-	AnimatorStateInfo LastAnimationState;
-
-	public float BallOffsetY;
-	public float BallOffsetX;
 
 	// Use this for initialization
 	void Start () {
-		Animator = GetComponent<Animator> ();
+		animator = GetComponent<Animator> ();
 	}
 	
 	// Update is called once per frame
@@ -20,10 +23,14 @@ public class GrabBall : MonoBehaviour {
 		Transform ball = transform.FindChild ("Ball");
 		if (ball == null) return;
 		DropBallIfCharge (ball);
-		UpdateBallPosition (ball);
+		//UpdateBallPosition (ball);
+		PlaceBallBeforePlayer (ball);
 	}
 
-	//Grab the ball if collision
+	/// <summary>
+	/// Grabs the ball and sets it as child if collided with game object
+	/// </summary>
+	/// <param name="col">Col.</param>
 	void OnCollisionEnter2D (Collision2D col){
 		if (col.gameObject.name == "Ball" && col.transform.parent == null) {
 			col.transform.SetParent (transform);
@@ -31,56 +38,64 @@ public class GrabBall : MonoBehaviour {
 			col.transform.GetComponent<Collider2D>().isTrigger = true;
 			col.transform.GetComponent<Rigidbody2D>().isKinematic = true;
 
-			if(!Animator.GetBool ("Charge"))
+			if(!animator.GetBool ("Charge"))
 				PlaceBallBeforePlayer (col.transform);
 		}
 	}
 
+	/// <summary>
+	/// Places the ball before player.
+	/// </summary>
+	/// <param name="ball">Ball.</param>
 	void PlaceBallBeforePlayer(Transform ball){
 		Vector2 pos = transform.position;
-		pos.y += BallOffsetY;
+		pos.y += ballOffsetY;
 
 		if (ball.position.x > pos.x)
-			pos.x += BallOffsetX;
+			pos.x += ballOffsetX;
 		else
-			pos.x -= BallOffsetX;
+			pos.x -= ballOffsetX;
 
 		ball.position = new Vector3 (pos.x, pos.y, 0);
 	}
 
-	void UpdateBallPosition(Transform ball){
-		AnimatorStateInfo currentAnimationState = Animator.GetCurrentAnimatorStateInfo (0);
+	/*void UpdateBallPosition(Transform ball){
+		AnimatorStateInfo currentAnimationState = animator.GetCurrentAnimatorStateInfo (0);
 
-		if (!currentAnimationState.Equals(LastAnimationState)) {
+		if (!currentAnimationState.Equals(lastAnimationState)) {
 			Vector2 pos = transform.position;
 			float currentDirectionX = GetCurrentDirectionX ();
 
 			if(currentDirectionX != 0)
-				pos.x += currentDirectionX > 0 ? BallOffsetX : -BallOffsetX;
+				pos.x += currentDirectionX > 0 ? ballOffsetX : -ballOffsetX;
 			else
 				pos.x = ball.position.x;
 
-			pos.y += BallOffsetY;
+			pos.y += ballOffsetY;
 			ball.position = new Vector3 (pos.x, pos.y, 0);
 		}
 
-		LastAnimationState = currentAnimationState;
-	}
+		lastAnimationState = currentAnimationState;
+	}*/
 
+	/// <summary>
+	/// Drops the ball if chargeing, removes ball as child.
+	/// </summary>
+	/// <param name="ball">Ball.</param>
 	void DropBallIfCharge(Transform ball){
-		if(Animator.GetBool("PowerupCharge")){
+		if(animator.GetBool("PowerupCharge")){
 			ball.transform.SetParent(null);
 			ball.GetComponent<Collider2D>().isTrigger = false;
 			ball.GetComponent<Rigidbody2D>().isKinematic = false;
 		}
 	}
 
-	float GetCurrentDirectionX(){
+	/*float GetCurrentDirectionX(){
 		float direction;
 		direction = GetComponent<Rigidbody2D>().velocity.x;
 
 		if (direction == 0)
 			return 0;
 		return direction > 0 ? 1 : -1;
-	}
+	}*/
 }

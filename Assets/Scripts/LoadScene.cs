@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Load scene.
+/// </summary>
+
+using UnityEngine;
 using System.Collections;
 
 public class LoadScene : MonoBehaviour {

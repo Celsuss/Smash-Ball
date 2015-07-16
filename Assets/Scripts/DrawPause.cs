@@ -1,27 +1,26 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Draw pause text if game is paused.
+/// </summary>
+
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 
 public class DrawPause : MonoBehaviour {
-
-	public Text PauseText;
-	public GameObject PauseMenu;
+	
+	[SerializeField] GameObject pauseMenu;
 
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		//Check if the game is paused by checking Time.timeScale
-		if (Time.timeScale == 0) {
-			PauseMenu.SetActive(true);
-			//PauseText.text = "Game Paused";
-		}
-		else {
-			PauseMenu.SetActive(false);
-			//PauseText.text = "";
-		}
+		//Check if the game is paused
+		if (Time.timeScale == 0) 
+			pauseMenu.SetActive(true);
+		else 
+			pauseMenu.SetActive(false);
 	}
 }

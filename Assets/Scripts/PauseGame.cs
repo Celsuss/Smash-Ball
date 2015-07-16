@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Pause the game.
+/// </summary>
+
+using UnityEngine;
 using System.Collections;
 
 public class PauseGame : MonoBehaviour {
@@ -18,19 +22,26 @@ public class PauseGame : MonoBehaviour {
 		}
 	}
 
-	// Returns true if game is paused
+	/// <summary>
+	/// Determines whether the game is paused.
+	/// </summary>
+	/// <returns><c>true</c> if this instance is paused; otherwise, <c>false</c>.</returns>
 	public bool IsPaused(){
 		if (Time.timeScale == 1)
 			return false;
 		return true;
 	}
 
-	// Pauses the game
+	/// <summary>
+	/// Starts the pause.
+	/// </summary>
 	public void StartPause(){
 		Time.timeScale = 0;
 	}
 
-	// End pause
+	/// <summary>
+	/// Ends the pause.
+	/// </summary>
 	public void EndPause(){
 		Time.timeScale = 1;
 	}

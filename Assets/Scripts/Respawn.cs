@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Respawn an object.
+/// </summary>
+
+using UnityEngine;
 using System.Collections;
 
 public class Respawn : MonoBehaviour {
@@ -15,6 +19,9 @@ public class Respawn : MonoBehaviour {
 	
 	}
 
+	/// <summary>
+	/// Set the respawned objects position to it's start position.
+	/// </summary>
 	public void ResetPos(){
 		transform.position = SpawnPosition;
 		GetComponent<Rigidbody2D>().velocity = new Vector2 (0, 0);

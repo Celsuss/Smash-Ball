@@ -1,15 +1,19 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Draw all players points.
+/// </summary>
+
+using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
 public class DrawPoints : MonoBehaviour {
 
-	public GameObject PointManager;
-	public List<Text> Texts;
+	[SerializeField] GameObject PointManager;
+	[SerializeField] List<Text> Texts;
 
-	private PointsManager Points;
-	private List<GameObject> Players;
+	PointsManager Points;
+	List<GameObject> Players;
 
 	// Use this for initialization
 	void Start () {
@@ -23,8 +27,8 @@ public class DrawPoints : MonoBehaviour {
 			i++;
 		}
 
-		for (int i2 = i; i2 < 4; i2++) {
-			Texts[i2].text = "";
+		for (; i < 4; i++) {
+			Texts[i].text = "";
 		}
 	}
 	

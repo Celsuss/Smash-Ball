@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Read input and lets a game object kick.
+/// </summary>
+
+using UnityEngine;
 using System.Collections;
 
 public class Kick : MonoBehaviour {
@@ -15,7 +19,7 @@ public class Kick : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Animator = GetComponent<Animator> ();
-		InputAxes input = GetComponent<InputAxes> ();
+		InputAxis input = GetComponent<InputAxis> ();
 		KickInputAxis = input.Kick;
 		YInputAxis = input.Jump;
 		CurrentDirectionX = 1;
@@ -33,6 +37,9 @@ public class Kick : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Updates the direction of the object and the direction of the kick.
+	/// </summary>
 	void UpdateDirection(){
 		if (GetComponent<Rigidbody2D>().velocity.x < 0 && CurrentDirectionX != -1)
 			CurrentDirectionX = -1;
@@ -40,6 +47,9 @@ public class Kick : MonoBehaviour {
 			CurrentDirectionX = 1;
 	}
 
+	/// <summary>
+	/// Kicks the ball the object is holding the ball.
+	/// </summary>
 	void KickBall(){
 		Transform ball = transform.FindChild ("Ball");
 		if (ball == null) return;
@@ -62,6 +72,11 @@ public class Kick : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Check if the ball is a child to this object, if true then object is holding the ball.
+	/// </summary>
+	/// <returns><c>true</c>, if ball was holdinged, <c>false</c> otherwise.</returns>
+	/// <param name="ball">Ball.</param>
 	bool HoldingBall(Transform ball){
 		if (ball.parent == transform)
 			return true;

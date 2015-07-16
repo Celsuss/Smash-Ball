@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Read input and moves the object.
+/// </summary>
+
+using UnityEngine;
 using System.Collections;
 
 public class Move : MonoBehaviour {
@@ -13,7 +17,7 @@ public class Move : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Animator = GetComponent<Animator> ();
-		InputAxis = GetComponent<InputAxes> ().Run;
+		InputAxis = GetComponent<InputAxis> ().Run;
 		rbdy2D = GetComponent<Rigidbody2D> ();
 	}
 	
@@ -34,6 +38,11 @@ public class Move : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Changes the direction of the object.
+	/// </summary>
+	/// <returns><c>true</c>, if direction was changed, <c>false</c> otherwise.</returns>
+	/// <param name="direction">Direction.</param>
 	bool ChangeDirection(float direction){
 		if (GetComponent<Rigidbody2D>().velocity.x == 0)
 			return false;
@@ -48,6 +57,9 @@ public class Move : MonoBehaviour {
 		return false;
 	}
 
+	/// <summary>
+	/// Sets the animation to Moving.
+	/// </summary>
 	void SetAnimationIsMoving(){
 		if (rbdy2D.velocity.x != 0)
 			Animator.SetBool ("Moving", true);

@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Read input and lets a game object jump.
+/// </summary>
+
+using UnityEngine;
 using System.Collections;
 
 public class Jump : MonoBehaviour {
@@ -20,7 +24,7 @@ public class Jump : MonoBehaviour {
 		JumpCount = MaxJumps;
 		Animator = GetComponent<Animator> ();
 		RayLength = 1.2f;
-		InputAxis = GetComponent<InputAxes> ().Jump;
+		InputAxis = GetComponent<InputAxis> ().Jump;
 		rbdy2D = GetComponent<Rigidbody2D> ();
 	}
 	
@@ -32,6 +36,9 @@ public class Jump : MonoBehaviour {
 		IsOnGround ();
 	}
 
+	/// <summary>
+	/// Check input and makes the game object jump.
+	/// </summary>
 	void FixedUpdate(){
 		//Read input and add force to left or right
 		if (Input.anyKeyDown && JumpCount > 0 && rbdy2D.velocity.y < MaxJumpForce && Input.GetAxis(InputAxis) > 0) {
@@ -42,6 +49,10 @@ public class Jump : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Determines whether the game object is on ground.
+	/// </summary>
+	/// <returns><c>true</c> if this instance is on ground; otherwise, <c>false</c>.</returns>
 	void IsOnGround(){
 		RaycastHit2D ray = Physics2D.Raycast(transform.position, -Vector2.up, RayLength, 1 << LayerMask.NameToLayer("Walls"));
 			

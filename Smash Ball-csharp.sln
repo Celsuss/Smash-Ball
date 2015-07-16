@@ -1,6 +1,8 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
+Project("{3CAEA0E4-649F-053C-7DFD-1A4CE976CC66}") = "Smash Ball", "Assembly-CSharp-firstpass-vs.csproj", "{AE6E3DD6-B664-E126-AF08-F7DF012A7FA1}"
+EndProject
 Project("{3CAEA0E4-649F-053C-7DFD-1A4CE976CC66}") = "Smash Ball", "Assembly-CSharp-vs.csproj", "{A8566888-C657-98F3-A13A-1989E0620C63}"
 EndProject
 Global
@@ -9,6 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE6E3DD6-B664-E126-AF08-F7DF012A7FA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE6E3DD6-B664-E126-AF08-F7DF012A7FA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE6E3DD6-B664-E126-AF08-F7DF012A7FA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE6E3DD6-B664-E126-AF08-F7DF012A7FA1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A8566888-C657-98F3-A13A-1989E0620C63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A8566888-C657-98F3-A13A-1989E0620C63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8566888-C657-98F3-A13A-1989E0620C63}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -17,7 +23,7 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																			GlobalSection(MonoDevelopProperties) = preSolution
+																																																																														GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1

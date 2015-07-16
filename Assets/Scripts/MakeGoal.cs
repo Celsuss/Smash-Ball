@@ -1,10 +1,13 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Make goal if ball collides with object.
+/// </summary>
+
+using UnityEngine;
 using System.Collections;
 
 public class MakeGoal : MonoBehaviour {
 
 	private GameObject PointManager;
-	//private Component PointManager;
 	public GameObject Owner;
 
 	// Use this for initialization
@@ -17,6 +20,10 @@ public class MakeGoal : MonoBehaviour {
 		
 	}
 
+	/// <summary>
+	/// Make a goal if ball collides with object.
+	/// </summary>
+	/// <param name="collision">Collision.</param>
 	void OnTriggerEnter2D(Collider2D collision){
 		if (collision.gameObject.tag != "Ball")
 			return;
@@ -27,28 +34,27 @@ public class MakeGoal : MonoBehaviour {
 			Goal(collision.gameObject);  
 	} 
 
+	/// <summary>
+	/// Find the player object that made the goal.
+	/// </summary>
+	/// <returns>The shooter.</returns>
+	/// <param name="ball">Ball.</param>
 	Transform GetShooter(GameObject ball){
 		Transform parent;
 
 		if (ball.transform.parent != null)
 			parent = ball.transform.parent;
 		else 
-			parent = ball.GetComponent<GetParent> ().PreviousParent;
+			parent = ball.GetComponent<GetParent> ().previousParent;
 
 		return parent;
 	}
 
+	/// <summary>
+	/// Add a point to the player object that made the goal.
+	/// </summary>
+	/// <param name="shooter">Shooter.</param>
 	void Goal(GameObject shooter){
 		PointManager.GetComponent<PointsManager> ().AddPoint (Owner);
 	}
-
-	/*void Goal(GameObject ball){
-		Transform parent;
-		if (ball.transform.parent != null)
-			parent = ball.transform.parent;
-		else 
-			parent = ball.GetComponent<GetParent> ().PreviousParent;
-
-		PointManager.GetComponent<PointsManager> ().AddPoint (parent.gameObject);
-	}*/
 }

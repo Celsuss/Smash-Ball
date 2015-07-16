@@ -1,189 +1,228 @@
-﻿	using UnityEngine;
+﻿/// <summary>
+/// Controlls game objects charge.
+/// </summary>
+
+using UnityEngine;
 using System.Collections;
 
 public class Charge : MonoBehaviour {
 
-	private Animator Animator;
+	[SerializeField] Transform spawnTrail;
+	[SerializeField] float trailDistance;
+	[SerializeField] int power;
+	[SerializeField] float chargingTime;
+	[SerializeField] float chargeCooldown;
+	[SerializeField] float chargeTime;
 
-	private string ChargeInputAxis;
-	private string XInputAxis;
-	private string YInputAxis;
+	Animator animator;
 
-	public Transform Trail;
-	public float TrailDistance;
+	Transform trail;
+	
+	string chargeInputAxis;
+	string xInputAxis;
+	string yInputAxis;
 
-	public int Power;
+	bool charging;
+	bool powerUp;
+	bool keyPressed;
 
-	public float ChargingTime;
-	public float ChargeCooldown;
-	public float PowerUpTime;
+	float chargingClock;
+	float ChargeCooldownClock;
+	float chargeClock;
 
-	private bool StartCharging;
-	private bool PowerUp;
-	private bool KeyPressed;
-
-	private float ChargingClock;
-	private float ChargeCooldownClock;
-	private float PowerUpClock;
-
-	private Quaternion OriginalRotation;
+	Quaternion originalRotation;
 
 	// Use this for initialization
 	void Start () {
-		StartCharging = false;
-		PowerUp = false;
-		KeyPressed = false;
+		charging = false;
+		powerUp = false;
+		keyPressed = false;
 
-		ChargingClock = ChargingTime;
+		chargingClock = chargingTime;
 		ChargeCooldownClock = 0;
-		PowerUpClock = PowerUpTime;
+		chargeClock = chargeTime;
 
-		OriginalRotation = transform.rotation;
+		originalRotation = transform.rotation;
 
-		Animator = GetComponent<Animator> ();
+		animator = GetComponent<Animator> ();
 
 		//Read input
-		InputAxes input = GetComponent<InputAxes> ();
-		ChargeInputAxis = input.Charge;
-		XInputAxis = input.Run;
-		YInputAxis = input.Jump;
+		InputAxis input = GetComponent<InputAxis> ();
+		chargeInputAxis = input.Charge;
+		xInputAxis = input.Run;
+		yInputAxis = input.Jump;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		ChargeCooldownClock -= Time.deltaTime;
-
-		//Return if not ready yet
-		if (ChargeCooldownClock > 0)
+		if (ChargeCooldownClock > 0) {
+			ChargeCooldownClock -= Time.deltaTime;
 			return;
+		}
 
-		//Start or end charging
-		if(GetKeyPressed() && !PowerUp && !StartCharging)
-			BeginPowerUp();
-		else if (GetKeyPressed() && StartCharging)
-			EndPowerUp ();
+		if (GetKeyPressed ()) {
+			if(!charging && !powerUp)
+				BeginPowerUp();
+			else if(charging)
+				CancelPowerUp();
+		}
 
 		//Countdown untill the charging is done and then shoot
-		if(StartCharging && !PowerUp)
+		if(charging && !powerUp)
 			ChargingPowerUp ();
 
 		//Do the PowerUp
-		if (PowerUp)
-			UsePowerUp ();
+		if (powerUp)
+			Charging ();
 	}
 
+	/// <summary>
+	/// Returns true if charge button is pressed else return false.
+	/// </summary>
+	/// <returns><c>true</c>, if key pressed, <c>false</c> otherwise.</returns>
 	bool GetKeyPressed(){
-		if (Input.GetAxis (ChargeInputAxis) > 0 && !KeyPressed) {
-			KeyPressed = true;
+		if (Input.GetAxis (chargeInputAxis) > 0 && !keyPressed) {
+			keyPressed = true;
 			return true;
 		}
-		else if (Input.GetAxis (ChargeInputAxis) <= 0 && KeyPressed)
-			KeyPressed = false;
+		else if (Input.GetAxis (chargeInputAxis) <= 0 && keyPressed)
+			keyPressed = false;
 
-				
 		return false;
 	}
 
+	/// <summary>
+	/// Begins the power up of charge.
+	/// </summary>
 	void BeginPowerUp(){
-		StartCharging = true;
+		charging = true;
 		GetComponent<Collider2D>().isTrigger = true;
 		GetComponent<Rigidbody2D>().isKinematic = true;
-		Animator.SetBool("PowerupCharge", true);
+		animator.SetBool("PowerupCharge", true);
 	}
 
-	void EndPowerUp(){
-		StartCharging = false;
+	/// <summary>
+	/// Cancels the power up of charge.
+	/// </summary>
+	/// <returns><c>true</c> if this instance cancel power up; otherwise, <c>false</c>.</returns>
+	void CancelPowerUp(){
+		charging = false;
 		GetComponent<Collider2D>().isTrigger = false;
 		GetComponent<Rigidbody2D>().isKinematic = false;
-		Animator.SetBool("PowerupCharge", false);
-		ChargingClock = ChargingTime;
+		animator.SetBool("PowerupCharge", false);
+		chargingClock = chargingTime;
 	}
 
+	/// <summary>
+	/// Count down the power up, if clock reaches zero then call FinishChargingPowerUp().
+	/// </summary>
 	void ChargingPowerUp(){
-		ChargingClock -= Time.deltaTime;
+		chargingClock -= Time.deltaTime;
 		
-		if(ChargingClock < 0)
+		if(chargingClock < 0)
 			FinishChargingPowerUp();
 	}
 
+	/// <summary>
+	/// Finishs the charging power up and start the charge.
+	/// </summary>
 	void FinishChargingPowerUp(){
 		GetComponent<Collider2D>().isTrigger = false;
 		GetComponent<Rigidbody2D>().isKinematic = false;
 		GetComponent<Rigidbody2D>().gravityScale = 0;
 
-		StartCharging = false;
-		ChargingClock = ChargingTime;
+		charging = false;
+		chargingClock = chargingTime;
 		
-		Animator.SetBool("PowerupCharge", false);
-		Animator.SetBool("Charge", true);
+		animator.SetBool("PowerupCharge", false);
+		animator.SetBool("Charge", true);
 
-		PowerUp = true;
-		ShootAway ();
+		powerUp = true;
+		StartCharge ();
 	}
 
-	void UsePowerUp(){
-		PowerUpClock -= Time.deltaTime;
-		if (PowerUpClock < 0) {
-			PowerUpClock = PowerUpTime;
-			Animator.SetBool("Charge", false);
+	/// <summary>
+	/// Calls if charging and count down the charge time. if time reaches zero then end charge and kill trail.
+	/// </summary>
+	void Charging(){
+		chargeClock -= Time.deltaTime;
+		if (chargeClock < 0) {
+			chargeClock = chargeTime;
+			animator.SetBool("Charge", false);
 			GetComponent<Rigidbody2D>().gravityScale = 1;
-			ChargeCooldownClock = ChargeCooldown;
-			PowerUp = false;
+			ChargeCooldownClock = chargeCooldown;
+			powerUp = false;
 			GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
-			transform.rotation = OriginalRotation;
+			transform.rotation = originalRotation;
 			KillTrail();
 		}
 	}
 
+	/// <summary>
+	/// Kills the trail after charge.
+	/// </summary>
 	void KillTrail(){
-		//Kill the child trail
-		Transform trail = transform.FindChild ("Cloud(Clone)");
-		if (trail != null)
+		if (trail != null) {
 			Destroy (trail.gameObject);
+			trail = null;
+		}
 	}
 
-	void ShootAway(){
+	/// <summary>
+	/// Starts the charge.
+	/// </summary>
+	void StartCharge(){
 		Vector2 angel = GetAngle ();
 
 		if (angel.x == 0 && angel.y == 0)
 			angel.y = 1;
-		GetComponent<Rigidbody2D>().AddForce (angel * Power);
+		GetComponent<Rigidbody2D>().AddForce (angel * power);
 
 		float rotation = Mathf.Atan2(-angel.x, angel.y) * Mathf.Rad2Deg;
 		transform.rotation = Quaternion.AngleAxis(rotation, Vector3.forward);
 		CreateTrail (angel);
 	}
 
+	/// <summary>
+	/// Creates the trail when charge starts.
+	/// </summary>
+	/// <param name="angel">Angel.</param>
 	void CreateTrail(Vector2 angel){
-		Transform trail;
+		Transform newTrail;
 		Vector3 pos = transform.position;
 
 		//Caclculate and set trail position
-		Vector2 deltaPos = TrailDistance * angel;
+		Vector2 deltaPos = trailDistance * angel;
 		pos = new Vector3(pos.x - deltaPos.x, pos.y - deltaPos.y, 0);
 
 		//Create the trail as a child
-		trail = Instantiate (Trail, pos, Quaternion.identity) as Transform;
-		trail.transform.SetParent (transform);
+		newTrail = Instantiate (spawnTrail, pos, Quaternion.identity) as Transform;
+		newTrail.transform.SetParent (transform);
 
 		//Set rotation on trail
-		trail.transform.rotation = transform.rotation;
+		newTrail.transform.rotation = transform.rotation;
 
 		//Reset trail localscale
-		trail.transform.localScale = Trail.transform.localScale;
+		newTrail.transform.localScale = spawnTrail.transform.localScale;
+
+		trail = newTrail;
 	}
-	
+
+	/// <summary>
+	/// Gets the angle of game object
+	/// </summary>
+	/// <returns>The angle.</returns>
 	Vector2 GetAngle(){
 		Vector2 angle = new Vector2 (0, 0);
 
-		if(Input.GetAxis (YInputAxis) > 0)
+		if(Input.GetAxis (yInputAxis) > 0)
 			angle.y = 1;
-		else if(Input.GetAxis (YInputAxis) < 0)
+		else if(Input.GetAxis (yInputAxis) < 0)
 			angle.y = -1;
 		
-		if(Input.GetAxis (XInputAxis) > 0)
+		if(Input.GetAxis (xInputAxis) > 0)
 			angle.x = 1;
-		else if(Input.GetAxis (XInputAxis) < 0)
+		else if(Input.GetAxis (xInputAxis) < 0)
 			angle.x = -1;
 
 		return angle;

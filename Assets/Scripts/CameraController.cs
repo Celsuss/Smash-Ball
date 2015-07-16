@@ -1,31 +1,39 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Camera controller.
+/// </summary>
+
+using UnityEngine;
 using System.Collections;
 
 public class CameraController : MonoBehaviour {
 
-	public int Offset;
-	public float Speed;
-
-	private GameObject[] Players;
-	private Vector3 StartPos;
+	[SerializeField] int offset;
+	[SerializeField] float speed;
+	GameObject[] players;
+	Vector3 startPos;
 
 	// Use this for initialization
 	void Start () {
-		Players = GameObject.FindGameObjectsWithTag ("Player");
-		StartPos = transform.position;
+		players = GameObject.FindGameObjectsWithTag ("Player");
+		startPos = transform.position;
 	}
 	
-	// Update is called once per frame
+	/// <summary>
+	/// Update this instance by zooming the camera in or out
+	/// </summary>
 	void Update () {
-		//Dont zoom in and out in the same update
 		if (!ZoomOut ())
 			ZoomIn ();
 	}
 
+	/// <summary>
+	/// Zooms out the camera.
+	/// </summary>
+	/// <returns><c>true</c>, if out was zoomed, <c>false</c> otherwise.</returns>
 	bool ZoomOut(){
 		//Vector3 cameraPos = transform.position;
-		for (int i = 0; i < Players.Length; i++) {
-			Vector3 iPos = Players[i].transform.position;
+		for (int i = 0; i < players.Length; i++) {
+			Vector3 iPos = players[i].transform.position;
 			Vector3 iScreenPos = Camera.main.WorldToScreenPoint(iPos);
 			Vector2 screenSize = new Vector2(Camera.main.pixelWidth, Camera.main.pixelHeight);
 
@@ -33,31 +41,34 @@ public class CameraController : MonoBehaviour {
 			//int deltaPos;
 
 			//Zoom the camera out
-			if (iScreenPos.x < (0 + Offset) || iScreenPos.y < (0 + Offset) ||
-			    iScreenPos.x > (screenSize.x - Offset) || iScreenPos.y > (screenSize.y - Offset)){
-				transform.Translate(new Vector3 (0, 0, -Speed));
+			if (iScreenPos.x < (0 + offset) || iScreenPos.y < (0 + offset) ||
+			    iScreenPos.x > (screenSize.x - offset) || iScreenPos.y > (screenSize.y - offset)){
+				transform.Translate(new Vector3 (0, 0, -speed));
 				return true;
 			}
 		}
 		return false;
 	}
 
+	/// <summary>
+	/// Zooms in the camera.
+	/// </summary>
 	void ZoomIn(){
 		Vector3 cameraPos = transform.position;
-		for (int i = 0; i < Players.Length; i++) {
-			Vector3 iPos = Players[i].transform.position;
+		for (int i = 0; i < players.Length; i++) {
+			Vector3 iPos = players[i].transform.position;
 			Vector3 iScreenPos = Camera.main.WorldToScreenPoint(iPos);
 			Vector2 screenSize = new Vector2(Camera.main.pixelWidth, Camera.main.pixelHeight);
-			int offset = Offset*2;
+			int offsetX2 = offset*2;
 
 			//Zoom the camera in if true for all players
-			if(cameraPos.z < StartPos.z &&
-			((iScreenPos.x > (0 + offset) && iScreenPos.x < (screenSize.x - offset)) && 
-			(iScreenPos.y > (0 + offset) && iScreenPos.y < (screenSize.y - offset)))){
+			if(cameraPos.z < startPos.z &&
+			   ((iScreenPos.x > (0 + offsetX2) && iScreenPos.x < (screenSize.x - offsetX2)) && 
+			 (iScreenPos.y > (0 + offsetX2) && iScreenPos.y < (screenSize.y - offsetX2)))){
 			}
 			else
 				return;
 		}
-		transform.Translate(new Vector3 (0, 0, Speed/*/2*/));
+		transform.Translate(new Vector3 (0, 0, speed/*/2*/));
 	}
 }

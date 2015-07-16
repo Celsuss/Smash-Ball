@@ -1,7 +1,14 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Kills a object that collides with this object and respawn that object at it's starting position.
+/// </summary>
+
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
+/// <summary>
+/// A class that holds dead objects and the objects respawn time.
+/// </summary>
 public class RespawnObject{
 	public RespawnObject(GameObject obj, int t){
 		RespawnObj = obj;
@@ -29,6 +36,10 @@ public class Kill : MonoBehaviour {
 		RemoveRespawnedObjects (deleteList);
 	}
 
+	/// <summary>
+	/// Respawns all dead objects.
+	/// </summary>
+	/// <param name="deleteList">Delete list.</param>
 	void RespawnObjects(List<RespawnObject> deleteList){
 		foreach(RespawnObject robj in RespawnList){
 			robj.RespawnTime -= Time.deltaTime;
@@ -40,11 +51,19 @@ public class Kill : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Removes objects from the respawn list.
+	/// </summary>
+	/// <param name="deleteList">Delete list.</param>
 	void RemoveRespawnedObjects(List<RespawnObject> deleteList){
 		foreach (RespawnObject robj in deleteList)
 			RespawnList.Remove(robj);
 	}
 
+	/// <summary>
+	/// Kill objects that collide with this object.
+	/// </summary>
+	/// <param name="collision">Collision.</param>
 	void OnTriggerEnter2D (Collider2D collision) {
 		if (collision.gameObject.tag == "Player") {
 			RespawnList.Add (new RespawnObject(collision.gameObject, RespawnTime));
@@ -56,6 +75,10 @@ public class Kill : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Respawns the child of a dead object.
+	/// </summary>
+	/// <param name="obj">Object.</param>
 	void RespawnChild(GameObject obj){
 		Transform child = obj.transform.FindChild ("Ball");
 		if (child != null)

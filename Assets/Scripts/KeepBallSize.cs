@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Fixes a bug where the ball object changes size.
+/// </summary>
+
+using UnityEngine;
 using System.Collections;
 
 public class KeepBallSize : MonoBehaviour {

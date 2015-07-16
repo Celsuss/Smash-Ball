@@ -1,4 +1,8 @@
-﻿using UnityEngine;
+﻿/// <summary>
+/// Rotate the objects sprite.
+/// </summary>
+
+using UnityEngine;
 using System.Collections;
 
 public class RotateSprite : MonoBehaviour {
