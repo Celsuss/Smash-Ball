@@ -13,12 +13,15 @@ public class Kick : MonoBehaviour {
 	private string YInputAxis;
 
 	public int Force;
-
 	private int CurrentDirectionX;
+
+	private AudioSource Audio;
+	[SerializeField] private AudioClip Sound;
 
 	// Use this for initialization
 	void Start () {
 		Animator = GetComponent<Animator> ();
+		Audio = GetComponent<AudioSource>();
 		InputAxis input = GetComponent<InputAxis> ();
 		KickInputAxis = input.Kick;
 		YInputAxis = input.Jump;
@@ -61,6 +64,9 @@ public class Kick : MonoBehaviour {
 		ball.transform.SetParent(null);
 		ball.GetComponent<Collider2D>().isTrigger = false;
 		ball.GetComponent<Rigidbody2D>().isKinematic = false;
+
+		//Audio.Play();
+		Audio.PlayOneShot(Sound, 1);
 
 		//If down key is down then drop ball
 		if (Input.GetAxis (YInputAxis) < 0) {

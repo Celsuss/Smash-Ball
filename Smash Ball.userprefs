@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\StealBall.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\Anathon\Assets\Scripts\Source\AvatarMagic.cs">
     <Files>
-      <File FileName="Assets\Scripts\StealBall.cs" Line="25" Column="104" />
+      <File FileName="..\Anathon\Assets\Scripts\Avatar\WarriorAttack.cs" Line="163" Column="99" />
+      <File FileName="..\Anathon\Assets\Scripts\Source\AvatarMagic.cs" Line="18" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
